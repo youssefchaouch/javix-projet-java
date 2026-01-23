@@ -1,5 +1,7 @@
 package Utlis;
 
+
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -7,9 +9,9 @@ import java.sql.SQLException;
 public class DataSource {
     private static DataSource dataSource;
     private  Connection con;
-    private  String url="jdbc:mysql://localhost:3306/esprit1a1";
+    private String url="jdbc:mysql://localhost:3306/hr_management";
     private  String username="root";
-    private  String password="";
+    private  String password="1234";
     private DataSource (){
         try {
             con = DriverManager.getConnection(url, username, password);

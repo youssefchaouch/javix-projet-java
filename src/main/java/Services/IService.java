@@ -1,14 +1,12 @@
 package Services;
 
-import java.sql.SQLException;
 import java.util.List;
 
-public interface IService <T>{
+public interface IService<T> {
 
-    boolean ajouter(T t) throws SQLException;
-    boolean supprimer(T t) throws SQLException;
-    boolean modifier(T t) throws SQLException;
-    List<T> afficher() throws SQLException;
-    T findById(int id) throws SQLException;
-
+    void add(T t);
+    void update(T t);
+    void delete(int id);
+    List<T> getAll();
+    T getById(int id);
 }
