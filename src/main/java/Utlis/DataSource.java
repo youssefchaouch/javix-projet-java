@@ -11,7 +11,7 @@ public class DataSource {
     private  Connection con;
     private String url="jdbc:mysql://localhost:3306/hr_management";
     private  String username="root";
-    private  String password="1234";
+    private  String password="";
     private DataSource (){
         try {
             con = DriverManager.getConnection(url, username, password);
