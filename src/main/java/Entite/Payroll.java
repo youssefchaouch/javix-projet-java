@@ -1,49 +1,48 @@
 package Entite;
 
+import javafx.beans.property.*;
 import java.time.LocalDateTime;
 
 public class Payroll {
+    private IntegerProperty idPayroll;
+    private IntegerProperty idEmployee;
+    private IntegerProperty month;
+    private IntegerProperty year;
+    private IntegerProperty totalLeaveDays;
+    private DoubleProperty finalSalary;
+    private ObjectProperty<LocalDateTime> generatedAt;
 
-    private int idPayroll;
-    private int idEmployee;
-    private int month;
-    private int year;
-    private int totalLeaveDays;
-    private double finalSalary;
-    private LocalDateTime generatedAt;
-
-    public Payroll() {}
-
-    public Payroll(int idPayroll, int idEmployee, int month, int year,
-                   int totalLeaveDays, double finalSalary,
-                   LocalDateTime generatedAt) {
-        this.idPayroll = idPayroll;
-        this.idEmployee = idEmployee;
-        this.month = month;
-        this.year = year;
-        this.totalLeaveDays = totalLeaveDays;
-        this.finalSalary = finalSalary;
-        this.generatedAt = generatedAt;
+    public Payroll(int idPayroll, int idEmployee, int month, int year, int totalLeaveDays, double finalSalary, LocalDateTime generatedAt) {
+        this.idPayroll = new SimpleIntegerProperty(idPayroll);
+        this.idEmployee = new SimpleIntegerProperty(idEmployee);
+        this.month = new SimpleIntegerProperty(month);
+        this.year = new SimpleIntegerProperty(year);
+        this.totalLeaveDays = new SimpleIntegerProperty(totalLeaveDays);
+        this.finalSalary = new SimpleDoubleProperty(finalSalary);
+        this.generatedAt = new SimpleObjectProperty<>(generatedAt);
     }
 
-    public int getIdPayroll() { return idPayroll; }
-    public void setIdPayroll(int idPayroll) { this.idPayroll = idPayroll; }
+    public IntegerProperty idPayrollProperty() { return idPayroll; }
+    public IntegerProperty idEmployeeProperty() { return idEmployee; }
+    public IntegerProperty monthProperty() { return month; }
+    public IntegerProperty yearProperty() { return year; }
+    public IntegerProperty totalLeaveDaysProperty() { return totalLeaveDays; }
+    public DoubleProperty finalSalaryProperty() { return finalSalary; }
+    public ObjectProperty<LocalDateTime> generatedAtProperty() { return generatedAt; }
 
-    public int getIdEmployee() { return idEmployee; }
-    public void setIdEmployee(int idEmployee) { this.idEmployee = idEmployee; }
+    public int getIdPayroll() { return idPayroll.get(); }
+    public int getIdEmployee() { return idEmployee.get(); }
+    public int getMonth() { return month.get(); }
+    public int getYear() { return year.get(); }
+    public int getTotalLeaveDays() { return totalLeaveDays.get(); }
+    public double getFinalSalary() { return finalSalary.get(); }
+    public LocalDateTime getGeneratedAt() { return generatedAt.get(); }
 
-    public int getMonth() { return month; }
-    public void setMonth(int month) { this.month = month; }
-
-    public int getYear() { return year; }
-    public void setYear(int year) { this.year = year; }
-
-    public int getTotalLeaveDays() { return totalLeaveDays; }
-    public void setTotalLeaveDays(int totalLeaveDays) { this.totalLeaveDays = totalLeaveDays; }
-
-    public double getFinalSalary() { return finalSalary; }
-    public void setFinalSalary(double finalSalary) { this.finalSalary = finalSalary; }
-
-    public LocalDateTime getGeneratedAt() { return generatedAt; }
-    public void setGeneratedAt(LocalDateTime generatedAt) { this.generatedAt = generatedAt; }
+    public void setIdPayroll(int id) { idPayroll.set(id); }
+    public void setIdEmployee(int id) { idEmployee.set(id); }
+    public void setMonth(int month) { this.month.set(month); }
+    public void setYear(int year) { this.year.set(year); }
+    public void setTotalLeaveDays(int days) { totalLeaveDays.set(days); }
+    public void setFinalSalary(double salary) { finalSalary.set(salary); }
+    public void setGeneratedAt(LocalDateTime date) { generatedAt.set(date); }
 }

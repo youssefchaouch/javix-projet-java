@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml" fx:controller="Controllers.PayrollController">
+
+    <top>
+        <Label text="MindRise Payroll Module" BorderPane.alignment="CENTER"/>
+    </top>
+
+    <center>
+        <VBox spacing="15">
+            <GridPane hgap="10" vgap="10">
+                <columnConstraints>
+                    <ColumnConstraints halignment="RIGHT"/>
+                    <ColumnConstraints halignment="LEFT"/>
+                </columnConstraints>
+
+                <Label text="Employee ID:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtEmployeeId" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                <Label text="Month:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtMonth" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                <Label text="Year:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtYear" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                <Label text="Leave Days:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtLeaveDays" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+                <Label text="Final Salary:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+                <Label fx:id="lblFinalSalary" text="0.0" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+                <Button text="Calculate Salary" onAction="#calculateFinalSalary" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+            </GridPane>
+
+            <TableView fx:id="tablePayroll" prefHeight="300">
+                <columns>
+                    <TableColumn fx:id="colId" text="Payroll ID"/>
+                    <TableColumn fx:id="colEmployee" text="Employee ID"/>
+                    <TableColumn fx:id="colMonth" text="Month"/>
+                    <TableColumn fx:id="colYear" text="Year"/>
+                    <TableColumn fx:id="colLeave" text="Leave Days"/>
+                    <TableColumn fx:id="colSalary" text="Final Salary"/>
+                </columns>
+            </TableView>
+
+            <HBox spacing="15">
+                <Button text="Generate Monthly Payroll" onAction="#generatePayroll"/>
+                <Button text="Clear Form" onAction="#clearForm"/>
+                <Label fx:id="lblTotalMonth" text="Total Salary (Month): 0.0"/>
+            </HBox>
+        </VBox>
+    </center>
+</BorderPane>
