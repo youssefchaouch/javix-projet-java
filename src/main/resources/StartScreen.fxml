@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="Controllers.StartScreenController"
+            style="-fx-background-color: #f7f9fc;">
+
+    <!-- Header / Hero -->
+    <top>
+        <VBox style="-fx-background-color: #74b9ff;">
+            <padding>
+                <Insets top="40" bottom="40" left="40" right="40"/>
+            </padding>
+
+            <Label text="HR Management System"
+                   style="-fx-text-fill: white;
+                          -fx-font-size: 30px;
+                          -fx-font-weight: bold;
+                          -fx-font-family: 'Segoe UI';"/>
+
+            <Label text="Choose your role to continue"
+                   style="-fx-text-fill: #ecf0f1;
+                          -fx-font-size: 15px;
+                          -fx-font-family: 'Segoe UI';"/>
+        </VBox>
+    </top>
+
+    <!-- Center Content -->
+    <center>
+        <VBox alignment="CENTER" spacing="30">
+            <padding>
+                <Insets top="60" bottom="60" left="60" right="60"/>
+            </padding>
+
+            <!-- Role Selection Card -->
+            <VBox spacing="25"
+                  alignment="CENTER"
+                  maxWidth="500"
+                  style="-fx-background-color: #ffffff;
+                         -fx-background-radius: 15;
+                         -fx-padding: 40;
+                         -fx-border-color: #dfe6e9;
+                         -fx-border-radius: 15;">
+
+                <Label text="Select Your Role"
+                       style="-fx-font-size: 22px;
+                              -fx-font-weight: bold;
+                              -fx-text-fill: #2d3436;"/>
+
+                <!-- HR Button -->
+                <Button text="👔 HR Portal"
+                        fx:id="hrButton"
+                        prefWidth="260"
+                        prefHeight="45"
+                        onAction="#hrButtonClicked"
+                        style="-fx-background-color: #6c5ce7;
+                               -fx-text-fill: white;
+                               -fx-font-size: 15px;
+                               -fx-font-weight: bold;
+                               -fx-background-radius: 10;
+                               -fx-cursor: hand;
+                               -fx-font-family: 'Segoe UI';"/>
+
+                <!-- Candidate Button -->
+                <Button text="🧑‍💼 Candidate Portal"
+                        fx:id="candidateButton"
+                        prefWidth="260"
+                        prefHeight="45"
+                        onAction="#candidateButtonClicked"
+                        style="-fx-background-color: #00cec9;
+                               -fx-text-fill: white;
+                               -fx-font-size: 15px;
+                               -fx-font-weight: bold;
+                               -fx-background-radius: 10;
+                               -fx-cursor: hand;
+                               -fx-font-family: 'Segoe UI';"/>
+            </VBox>
+        </VBox>
+    </center>
+
+    <!-- Footer -->
+    <bottom>
+        <HBox alignment="CENTER">
+            <padding>
+                <Insets bottom="15"/>
+            </padding>
+
+            <Label text="© 2026 HR System"
+                   style="-fx-text-fill: #636e72;
+                          -fx-font-size: 12px;
+                          -fx-font-family: 'Segoe UI';"/>
+        </HBox>
+    </bottom>
+
+</BorderPane>

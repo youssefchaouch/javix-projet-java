@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="Controllers.JobApplicationController"
+            style="-fx-background-color: #f7f9fc;">
+
+    <!-- Header -->
+    <top>
+        <VBox style="-fx-background-color: #74b9ff;">
+            <padding>
+                <Insets top="25" bottom="25" left="30" right="30"/>
+            </padding>
+
+            <Label text="Candidate Application Form"
+                   style="-fx-text-fill: white;
+                          -fx-font-size: 26px;
+                          -fx-font-weight: bold;
+                          -fx-font-family: 'Segoe UI';"/>
+        </VBox>
+    </top>
+
+    <!-- Wide Form -->
+    <center>
+        <VBox spacing="25">
+            <padding>
+                <Insets top="40" bottom="40" left="80" right="80"/>
+            </padding>
+
+            <!-- Section Title -->
+            <Label text="Application Details"
+                   style="-fx-font-size: 20px;
+                          -fx-font-weight: bold;
+                          -fx-text-fill: #2d3436;"/>
+
+            <!-- Wide Grid -->
+            <GridPane hgap="25" vgap="18"
+                      style="-fx-background-color: #ffffff;
+                             -fx-background-radius: 12;
+                             -fx-padding: 25;
+                             -fx-border-color: #dfe6e9;
+                             -fx-border-radius: 12;">
+
+                <!-- Column constraints for width -->
+                <columnConstraints>
+                    <ColumnConstraints prefWidth="180"/>
+                    <ColumnConstraints hgrow="ALWAYS"/>
+                </columnConstraints>
+
+                <!-- First Name -->
+                <Label text="First Name"/>
+                <TextField fx:id="firstNameField"
+                           promptText="Enter first name"
+                           GridPane.columnIndex="1"
+                           style="-fx-background-radius: 8;
+                                  -fx-border-color: #b2bec3;
+                                  -fx-border-radius: 8;"/>
+
+                <!-- Last Name -->
+                <Label text="Last Name" GridPane.rowIndex="1"/>
+                <TextField fx:id="lastNameField"
+                           promptText="Enter last name"
+                           GridPane.rowIndex="1"
+                           GridPane.columnIndex="1"
+                           style="-fx-background-radius: 8;
+                                  -fx-border-color: #b2bec3;
+                                  -fx-border-radius: 8;"/>
+
+                <!-- Email -->
+                <Label text="Email" GridPane.rowIndex="2"/>
+                <TextField fx:id="emailField"
+                           promptText="example@email.com"
+                           GridPane.rowIndex="2"
+                           GridPane.columnIndex="1"
+                           style="-fx-background-radius: 8;
+                                  -fx-border-color: #b2bec3;
+                                  -fx-border-radius: 8;"/>
+
+                <!-- Phone -->
+                <Label text="Phone" GridPane.rowIndex="3"/>
+                <TextField fx:id="phoneField"
+                           promptText="Enter phone number"
+                           GridPane.rowIndex="3"
+                           GridPane.columnIndex="1"
+                           style="-fx-background-radius: 8;
+                                  -fx-border-color: #b2bec3;
+                                  -fx-border-radius: 8;"/>
+
+                <!-- Job Offer -->
+                <Label text="Job Offer ID" GridPane.rowIndex="4"/>
+                <TextField fx:id="jobOfferField"
+                           promptText="Enter job offer ID"
+                           GridPane.rowIndex="4"
+                           GridPane.columnIndex="1"
+                           style="-fx-background-radius: 8;
+                                  -fx-border-color: #b2bec3;
+                                  -fx-border-radius: 8;"/>
+
+                <!-- Resume -->
+                <Label text="Resume"
+                       GridPane.rowIndex="5"
+                       GridPane.valignment="TOP"/>
+
+                <TextArea fx:id="resumeArea"
+                          prefRowCount="6"
+                          promptText="Paste resume summary..."
+                          GridPane.rowIndex="5"
+                          GridPane.columnIndex="1"
+                          style="-fx-background-radius: 8;
+                                 -fx-border-color: #b2bec3;
+                                 -fx-border-radius: 8;"/>
+            </GridPane>
+
+            <!-- Buttons aligned right -->
+            <HBox spacing="15" alignment="CENTER_RIGHT">
+                <Label fx:id="errorLabel"
+                       textFill="red"
+                       style="-fx-font-size: 13px;"/>
+                
+                <Button fx:id="clearButton"
+                        text="Clear"
+                        style="-fx-background-color:#ffeaa7;
+                               -fx-text-fill:#2d3436;
+                               -fx-font-weight:bold;
+                               -fx-background-radius: 8;
+                               -fx-padding:10 16;"/>
+
+                <Button fx:id="exitButton"
+                        text="Exit"
+                        style="-fx-background-color:#fab1a0;
+                               -fx-text-fill:#2d3436;
+                               -fx-font-weight:bold;
+                               -fx-cursor: hand;
+                               -fx-background-radius: 8;
+                               -fx-padding:10 16;"/>
+
+                <Button fx:id="saveButton"
+                        text="Submit Application"
+                        style="-fx-background-color:#55efc4;
+                               -fx-text-fill:#2d3436;
+                               -fx-font-weight:bold;
+                               -fx-cursor: hand;
+                               -fx-background-radius: 8;
+                               -fx-padding:10 18;"/>
+            </HBox>
+
+        </VBox>
+    </center>
+
+</BorderPane>

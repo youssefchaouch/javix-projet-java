@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="Controllers.JobOfferController"
+            style="-fx-background-color: #f7f9fc;">
+
+    <!-- Header -->
+    <top>
+        <VBox style="-fx-background-color: #6c5ce7;">
+            <padding>
+                <Insets top="25" bottom="25" left="30" right="30"/>
+            </padding>
+
+            <Label text="Job Offer Management"
+                   style="-fx-text-fill: white;
+                          -fx-font-size: 26px;
+                          -fx-font-weight: bold;
+                          -fx-font-family: 'Segoe UI';"/>
+        </VBox>
+    </top>
+
+    <!-- Wide Content -->
+    <center>
+        <VBox spacing="25">
+            <padding>
+                <Insets top="40" bottom="40" left="80" right="80"/>
+            </padding>
+
+            <!-- Section Title -->
+            <Label text="Create New Job Offer"
+                   style="-fx-font-size: 20px;
+                          -fx-font-weight: bold;
+                          -fx-text-fill: #2d3436;"/>
+
+            <!-- Wide Form Grid -->
+            <GridPane hgap="25" vgap="18"
+                      style="-fx-background-color: #ffffff;
+                             -fx-background-radius: 12;
+                             -fx-padding: 25;
+                             -fx-border-color: #dfe6e9;
+                             -fx-border-radius: 12;">
+
+                <columnConstraints>
+                    <ColumnConstraints prefWidth="160"/>
+                    <ColumnConstraints hgrow="ALWAYS"/>
+                </columnConstraints>
+
+                <!-- Title -->
+                <Label text="Job Title"/>
+                <TextField fx:id="titleField"
+                           promptText="Enter job title"
+                           GridPane.columnIndex="1"
+                           style="-fx-background-radius: 8;
+                                  -fx-border-color: #b2bec3;
+                                  -fx-border-radius: 8;"/>
+
+                <!-- Description -->
+                <Label text="Description"
+                       GridPane.rowIndex="1"
+                       GridPane.valignment="TOP"/>
+                <TextArea fx:id="descriptionField"
+                          promptText="Enter job description"
+                          prefRowCount="4"
+                          GridPane.rowIndex="1"
+                          GridPane.columnIndex="1"
+                          style="-fx-background-radius: 8;
+                                 -fx-border-color: #b2bec3;
+                                 -fx-border-radius: 8;"/>
+
+                <!-- Status -->
+                <Label text="Status" GridPane.rowIndex="2"/>
+                <TextField fx:id="statusField"
+                           promptText="Open / Closed"
+                           GridPane.rowIndex="2"
+                           GridPane.columnIndex="1"
+                           style="-fx-background-radius: 8;
+                                  -fx-border-color: #b2bec3;
+                                  -fx-border-radius: 8;"/>
+
+                <!-- Created By -->
+                <Label text="Created By" GridPane.rowIndex="3"/>
+                <TextField fx:id="createdByField"
+                           promptText="User ID"
+                           GridPane.rowIndex="3"
+                           GridPane.columnIndex="1"
+                           style="-fx-background-radius: 8;
+                                  -fx-border-color: #b2bec3;
+                                  -fx-border-radius: 8;"/>
+            </GridPane>
+
+            <!-- Action Bar -->
+            <Separator/>
+
+            <HBox alignment="CENTER_RIGHT" spacing="15">
+                <Button fx:id="clearButton"
+                        text="Clear"
+                        onAction="#handleClear"
+                        style="-fx-background-color:#ffeaa7;
+                        -fx-text-fill:#2d3436;
+                        -fx-font-weight:bold;
+                        -fx-cursor: hand;
+                        -fx-background-radius: 8;
+                        -fx-padding:10 16;"/>
+
+                <Button fx:id="backButton"
+                        text="⬅ Back to HR Menu"
+                        onAction="#handleBack"
+                        style="-fx-background-color: #0984e3;
+                   -fx-text-fill: white;
+                   -fx-font-weight: bold;
+                   -fx-background-radius: 10;
+                   -fx-padding: 10 20;
+                   -fx-cursor: hand;
+                   -fx-font-family: 'Segoe UI';"/>
+
+                <Button text="➕ Add Job Offer"
+                        onAction="#handleAddOffer"
+                        style="-fx-background-color:#74b9ff;
+                               -fx-text-fill:white;
+                               -fx-font-weight:bold;
+                               -fx-cursor: hand;
+                               -fx-background-radius: 8;
+                               -fx-padding:10 20;"/>
+            </HBox>
+
+        </VBox>
+    </center>
+
+</BorderPane>

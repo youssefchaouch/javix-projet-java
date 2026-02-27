@@ -1,6 +1,7 @@
 package Services;
 
 import Entite.Application;
+import Entite.CandidateApplication;
 import Utlis.DataSource;
 
 import java.sql.*;
@@ -98,4 +99,5 @@ public class ApplicationService implements IService<Application> {
         }
         return null;
     }
+
 }
