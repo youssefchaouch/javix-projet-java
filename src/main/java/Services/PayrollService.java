@@ -123,9 +123,10 @@ public class PayrollService implements IService<Payroll> {
     /** Génère automatiquement la paie de tous les employés pour un mois donné */
     public void generateMonthlyPayroll(int month, int year) {
         List<Employee> employees = employeeService.getAll();
+        int daysInMonth = java.time.YearMonth.of(year, month).lengthOfMonth();
         for (Employee emp : employees) {
             int leaveDays = leaveRequestService.countApprovedLeaveDays(emp.getIdEmployee(), month, year);
-            double dailyRate = emp.getSalary() / 30;
+            double dailyRate = emp.getSalary() / daysInMonth;
             double finalSalary = emp.getSalary() - (leaveDays * dailyRate);
 
             Payroll payroll = new Payroll(0, emp.getIdEmployee(), month, year, leaveDays, finalSalary,

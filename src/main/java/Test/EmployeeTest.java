@@ -12,12 +12,12 @@ public class EmployeeTest {
         EmployeeService service = new EmployeeService();
 
         // 1️⃣ Add two employees
-        Employee emp1 = new Employee(0, "Alice", "Smith", "alice@exampple.com", "1234567890",
+        Employee emp1 = new Employee(0, "Alice", "Smith", "alice@e8xampple.com", "1234567890",
                 LocalDate.of(2023, 1, 15), "Developer", 5000.0, "ACTIVE");
         service.add(emp1);
         System.out.println("Added employee Alice.");
 
-        Employee emp2 = new Employee(0, "Bob", "Johnson", "bob@exampple.com", "0987654321",
+        Employee emp2 = new Employee(1, "Bob", "Johnson", "bob@exampple.com", "0987654321",
                 LocalDate.of(2023, 2, 20), "Tester", 4500.0, "ACTIVE");
         service.add(emp2);
         System.out.println("Added employee Bob.");
