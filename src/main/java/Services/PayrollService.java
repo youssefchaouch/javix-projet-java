@@ -118,7 +118,7 @@ public class PayrollService implements IService<Payroll> {
         return null;
     }
 
-    // ========== Fonctions avancées ==========
+
 
     /** Génère automatiquement la paie de tous les employés pour un mois donné */
     public void generateMonthlyPayroll(int month, int year) {
