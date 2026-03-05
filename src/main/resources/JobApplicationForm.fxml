@@ -6,148 +6,153 @@
 
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="Controllers.JobApplicationController"
-            style="-fx-background-color: #f7f9fc;">
+            style="-fx-background-color: #f7f9fc; -fx-font-family: 'Segoe UI';">
 
     <!-- Header -->
     <top>
         <VBox style="-fx-background-color: #74b9ff;">
             <padding>
-                <Insets top="25" bottom="25" left="30" right="30"/>
+                <Insets top="30" bottom="30" left="40" right="40"/>
             </padding>
-
             <Label text="Candidate Application Form"
                    style="-fx-text-fill: white;
-                          -fx-font-size: 26px;
-                          -fx-font-weight: bold;
-                          -fx-font-family: 'Segoe UI';"/>
+                          -fx-font-size: 32px;
+                          -fx-font-weight: bold;"/>
         </VBox>
     </top>
 
     <!-- Wide Form -->
     <center>
-        <VBox spacing="25">
+        <VBox spacing="35">
             <padding>
-                <Insets top="40" bottom="40" left="80" right="80"/>
+                <Insets top="50" bottom="50" left="120" right="120"/>
             </padding>
 
             <!-- Section Title -->
             <Label text="Application Details"
-                   style="-fx-font-size: 20px;
+                   style="-fx-font-size: 24px;
                           -fx-font-weight: bold;
                           -fx-text-fill: #2d3436;"/>
 
             <!-- Wide Grid -->
-            <GridPane hgap="25" vgap="18"
+            <GridPane hgap="35" vgap="25"
                       style="-fx-background-color: #ffffff;
                              -fx-background-radius: 12;
-                             -fx-padding: 25;
+                             -fx-padding: 35;
                              -fx-border-color: #dfe6e9;
                              -fx-border-radius: 12;">
-
-                <!-- Column constraints for width -->
                 <columnConstraints>
-                    <ColumnConstraints prefWidth="180"/>
+                    <ColumnConstraints prefWidth="220"/>
                     <ColumnConstraints hgrow="ALWAYS"/>
                 </columnConstraints>
 
                 <!-- First Name -->
-                <Label text="First Name"/>
+                <Label text="First Name" style="-fx-font-size: 16px;"/>
                 <TextField fx:id="firstNameField"
                            promptText="Enter first name"
                            GridPane.columnIndex="1"
-                           style="-fx-background-radius: 8;
+                           prefHeight="45"
+                           style="-fx-font-size: 16px;
+                                  -fx-background-radius: 8;
                                   -fx-border-color: #b2bec3;
                                   -fx-border-radius: 8;"/>
 
                 <!-- Last Name -->
-                <Label text="Last Name" GridPane.rowIndex="1"/>
+                <Label text="Last Name" GridPane.rowIndex="1" style="-fx-font-size: 16px;"/>
                 <TextField fx:id="lastNameField"
                            promptText="Enter last name"
                            GridPane.rowIndex="1"
                            GridPane.columnIndex="1"
-                           style="-fx-background-radius: 8;
+                           prefHeight="45"
+                           style="-fx-font-size: 16px;
+                                  -fx-background-radius: 8;
                                   -fx-border-color: #b2bec3;
                                   -fx-border-radius: 8;"/>
 
                 <!-- Email -->
-                <Label text="Email" GridPane.rowIndex="2"/>
+                <Label text="Email" GridPane.rowIndex="2" style="-fx-font-size: 16px;"/>
                 <TextField fx:id="emailField"
                            promptText="example@email.com"
                            GridPane.rowIndex="2"
                            GridPane.columnIndex="1"
-                           style="-fx-background-radius: 8;
+                           prefHeight="45"
+                           style="-fx-font-size: 16px;
+                                  -fx-background-radius: 8;
                                   -fx-border-color: #b2bec3;
                                   -fx-border-radius: 8;"/>
 
                 <!-- Phone -->
-                <Label text="Phone" GridPane.rowIndex="3"/>
+                <Label text="Phone" GridPane.rowIndex="3" style="-fx-font-size: 16px;"/>
                 <TextField fx:id="phoneField"
                            promptText="Enter phone number"
                            GridPane.rowIndex="3"
                            GridPane.columnIndex="1"
-                           style="-fx-background-radius: 8;
+                           prefHeight="45"
+                           style="-fx-font-size: 16px;
+                                  -fx-background-radius: 8;
                                   -fx-border-color: #b2bec3;
                                   -fx-border-radius: 8;"/>
 
                 <!-- Job Offer -->
-                <Label text="Job Offer ID" GridPane.rowIndex="4"/>
+                <Label text="Job Offer ID" GridPane.rowIndex="4" style="-fx-font-size: 16px;"/>
                 <TextField fx:id="jobOfferField"
                            promptText="Enter job offer ID"
                            GridPane.rowIndex="4"
                            GridPane.columnIndex="1"
-                           style="-fx-background-radius: 8;
+                           prefHeight="45"
+                           style="-fx-font-size: 16px;
+                                  -fx-background-radius: 8;
                                   -fx-border-color: #b2bec3;
                                   -fx-border-radius: 8;"/>
 
                 <!-- Resume -->
-                <Label text="Resume"
-                       GridPane.rowIndex="5"
-                       GridPane.valignment="TOP"/>
-
+                <Label text="Resume" GridPane.rowIndex="5" GridPane.valignment="TOP" style="-fx-font-size: 16px;"/>
                 <TextArea fx:id="resumeArea"
-                          prefRowCount="6"
+                          prefRowCount="10"
                           promptText="Paste resume summary..."
                           GridPane.rowIndex="5"
                           GridPane.columnIndex="1"
-                          style="-fx-background-radius: 8;
+                          style="-fx-font-size: 16px;
+                                 -fx-background-radius: 8;
                                  -fx-border-color: #b2bec3;
                                  -fx-border-radius: 8;"/>
             </GridPane>
 
             <!-- Buttons aligned right -->
-            <HBox spacing="15" alignment="CENTER_RIGHT">
+            <HBox spacing="20" alignment="CENTER_RIGHT">
                 <Label fx:id="errorLabel"
                        textFill="red"
-                       style="-fx-font-size: 13px;"/>
-                
+                       style="-fx-font-size: 14px;"/>
+
                 <Button fx:id="clearButton"
                         text="Clear"
                         style="-fx-background-color:#ffeaa7;
                                -fx-text-fill:#2d3436;
+                               -fx-font-size: 16px;
                                -fx-font-weight:bold;
                                -fx-background-radius: 8;
-                               -fx-padding:10 16;"/>
+                               -fx-padding:12 20;"/>
 
                 <Button fx:id="exitButton"
                         text="Exit"
                         style="-fx-background-color:#fab1a0;
                                -fx-text-fill:#2d3436;
+                               -fx-font-size: 16px;
                                -fx-font-weight:bold;
                                -fx-cursor: hand;
                                -fx-background-radius: 8;
-                               -fx-padding:10 16;"/>
+                               -fx-padding:12 20;"/>
 
                 <Button fx:id="saveButton"
                         text="Submit Application"
                         style="-fx-background-color:#55efc4;
                                -fx-text-fill:#2d3436;
+                               -fx-font-size: 16px;
                                -fx-font-weight:bold;
                                -fx-cursor: hand;
                                -fx-background-radius: 8;
-                               -fx-padding:10 18;"/>
+                               -fx-padding:12 24;"/>
             </HBox>
-
         </VBox>
     </center>
-
 </BorderPane>

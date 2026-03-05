@@ -6,88 +6,93 @@
 
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="Controllers.JobOfferController"
-            style="-fx-background-color: #f7f9fc;">
+            style="-fx-background-color: #f7f9fc; -fx-font-family: 'Segoe UI';">
 
     <!-- Header -->
     <top>
         <VBox style="-fx-background-color: #6c5ce7;">
             <padding>
-                <Insets top="25" bottom="25" left="30" right="30"/>
+                <Insets top="35" bottom="35" left="50" right="50"/>
             </padding>
-
             <Label text="Job Offer Management"
                    style="-fx-text-fill: white;
-                          -fx-font-size: 26px;
-                          -fx-font-weight: bold;
-                          -fx-font-family: 'Segoe UI';"/>
+                          -fx-font-size: 32px;
+                          -fx-font-weight: bold;"/>
         </VBox>
     </top>
 
     <!-- Wide Content -->
     <center>
-        <VBox spacing="25">
+        <VBox spacing="40">
             <padding>
-                <Insets top="40" bottom="40" left="80" right="80"/>
+                <Insets top="60" bottom="60" left="120" right="120"/>
             </padding>
 
             <!-- Section Title -->
             <Label text="Create New Job Offer"
-                   style="-fx-font-size: 20px;
+                   style="-fx-font-size: 24px;
                           -fx-font-weight: bold;
                           -fx-text-fill: #2d3436;"/>
 
             <!-- Wide Form Grid -->
-            <GridPane hgap="25" vgap="18"
+            <GridPane hgap="40" vgap="30"
                       style="-fx-background-color: #ffffff;
                              -fx-background-radius: 12;
-                             -fx-padding: 25;
+                             -fx-padding: 40;
                              -fx-border-color: #dfe6e9;
                              -fx-border-radius: 12;">
-
                 <columnConstraints>
-                    <ColumnConstraints prefWidth="160"/>
+                    <ColumnConstraints prefWidth="220"/>
                     <ColumnConstraints hgrow="ALWAYS"/>
                 </columnConstraints>
 
                 <!-- Title -->
-                <Label text="Job Title"/>
+                <Label text="Job Title" style="-fx-font-size: 16px;"/>
                 <TextField fx:id="titleField"
                            promptText="Enter job title"
                            GridPane.columnIndex="1"
-                           style="-fx-background-radius: 8;
+                           prefHeight="50"
+                           style="-fx-font-size: 16px;
+                                  -fx-background-radius: 8;
                                   -fx-border-color: #b2bec3;
                                   -fx-border-radius: 8;"/>
 
                 <!-- Description -->
                 <Label text="Description"
                        GridPane.rowIndex="1"
-                       GridPane.valignment="TOP"/>
+                       GridPane.valignment="TOP"
+                       style="-fx-font-size: 16px;"/>
                 <TextArea fx:id="descriptionField"
                           promptText="Enter job description"
-                          prefRowCount="4"
+                          prefRowCount="8"
                           GridPane.rowIndex="1"
                           GridPane.columnIndex="1"
-                          style="-fx-background-radius: 8;
+                          style="-fx-font-size: 16px;
+                                 -fx-background-radius: 8;
                                  -fx-border-color: #b2bec3;
                                  -fx-border-radius: 8;"/>
 
                 <!-- Status -->
-                <Label text="Status" GridPane.rowIndex="2"/>
+                <Label text="Status" GridPane.rowIndex="2" style="-fx-font-size: 16px;"/>
                 <TextField fx:id="statusField"
                            promptText="Open / Closed"
                            GridPane.rowIndex="2"
                            GridPane.columnIndex="1"
-                           style="-fx-background-radius: 8;
+                           prefHeight="50"
+                           style="-fx-font-size: 16px;
+                                  -fx-background-radius: 8;
                                   -fx-border-color: #b2bec3;
                                   -fx-border-radius: 8;"/>
 
                 <!-- Created By -->
-                <Label text="Created By" GridPane.rowIndex="3"/>
+                <Label text="Created By" GridPane.rowIndex="3" style="-fx-font-size: 16px;"/>
                 <TextField fx:id="createdByField"
                            promptText="User ID"
                            GridPane.rowIndex="3"
                            GridPane.columnIndex="1"
-                           style="-fx-background-radius: 8;
+                           prefHeight="50"
+                           style="-fx-font-size: 16px;
+                                  -fx-background-radius: 8;
                                   -fx-border-color: #b2bec3;
                                   -fx-border-radius: 8;"/>
             </GridPane>
@@ -95,39 +100,39 @@
             <!-- Action Bar -->
             <Separator/>
 
-            <HBox alignment="CENTER_RIGHT" spacing="15">
+            <HBox alignment="CENTER_RIGHT" spacing="25">
                 <Button fx:id="clearButton"
                         text="Clear"
                         onAction="#handleClear"
                         style="-fx-background-color:#ffeaa7;
-                        -fx-text-fill:#2d3436;
-                        -fx-font-weight:bold;
-                        -fx-cursor: hand;
-                        -fx-background-radius: 8;
-                        -fx-padding:10 16;"/>
+                               -fx-text-fill:#2d3436;
+                               -fx-font-size: 16px;
+                               -fx-font-weight:bold;
+                               -fx-cursor: hand;
+                               -fx-background-radius: 8;
+                               -fx-padding:14 24;"/>
 
                 <Button fx:id="backButton"
                         text="⬅ Back to HR Menu"
                         onAction="#handleBack"
                         style="-fx-background-color: #0984e3;
-                   -fx-text-fill: white;
-                   -fx-font-weight: bold;
-                   -fx-background-radius: 10;
-                   -fx-padding: 10 20;
-                   -fx-cursor: hand;
-                   -fx-font-family: 'Segoe UI';"/>
+                               -fx-text-fill: white;
+                               -fx-font-size: 16px;
+                               -fx-font-weight: bold;
+                               -fx-background-radius: 10;
+                               -fx-padding:14 28;
+                               -fx-cursor: hand;"/>
 
                 <Button text="➕ Add Job Offer"
                         onAction="#handleAddOffer"
                         style="-fx-background-color:#74b9ff;
                                -fx-text-fill:white;
+                               -fx-font-size: 16px;
                                -fx-font-weight:bold;
                                -fx-cursor: hand;
                                -fx-background-radius: 8;
-                               -fx-padding:10 20;"/>
+                               -fx-padding:14 28;"/>
             </HBox>
-
         </VBox>
     </center>
-
 </BorderPane>

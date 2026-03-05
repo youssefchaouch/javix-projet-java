@@ -6,86 +6,95 @@
 
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="Controllers.LoginController"
-            style="-fx-background-color: #f7f9fc;">
+            style="-fx-background-color: #f7f9fc; -fx-font-family: 'Segoe UI';">
 
     <!-- Header -->
     <top>
         <VBox style="-fx-background-color: #74b9ff;">
             <padding>
-                <Insets top="30" bottom="30" left="30" right="30"/>
+                <Insets top="40" bottom="40" left="50" right="50"/>
             </padding>
 
             <Label text="HR Management System"
                    style="-fx-text-fill: white;
-                          -fx-font-size: 28px;
-                          -fx-font-weight: bold;
-                          -fx-font-family: 'Segoe UI';"/>
+                          -fx-font-size: 32px;
+                          -fx-font-weight: bold;"/>
 
             <Label text="Login or Continue"
                    style="-fx-text-fill: #ecf0f1;
-                          -fx-font-size: 15px;
-                          -fx-font-family: 'Segoe UI';"/>
+                          -fx-font-size: 16px;"/>
         </VBox>
     </top>
 
     <!-- Center Content -->
     <center>
-        <VBox alignment="CENTER" spacing="25">
+        <VBox alignment="CENTER" spacing="40">
             <padding>
-                <Insets top="60" bottom="60" left="60" right="60"/>
+                <Insets top="80" bottom="80" left="80" right="80"/>
             </padding>
 
             <!-- Login Card -->
-            <VBox spacing="20"
+            <VBox spacing="25"
                   alignment="CENTER"
-                  maxWidth="400"
+                  maxWidth="450"
                   style="-fx-background-color: #ffffff;
-                         -fx-background-radius: 15;
-                         -fx-padding: 40;
+                         -fx-background-radius: 18;
+                         -fx-padding: 50;
                          -fx-border-color: #dfe6e9;
-                         -fx-border-radius: 15;">
+                         -fx-border-radius: 18;
+                         -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 12,0,0,4);">
 
                 <Label text="HR Login"
-                       style="-fx-font-size: 22px;
+                       style="-fx-font-size: 24px;
                               -fx-font-weight: bold;
                               -fx-text-fill: #2d3436;"/>
 
                 <TextField fx:id="usernameField"
                            promptText="Username"
-                           prefWidth="260"/>
+                           prefWidth="300"
+                           prefHeight="50"
+                           style="-fx-font-size: 16px;
+                                  -fx-background-radius: 10;
+                                  -fx-border-color: #b2bec3;
+                                  -fx-border-radius: 10;"/>
 
                 <PasswordField fx:id="passwordField"
                                promptText="Password"
-                               prefWidth="260"/>
+                               prefWidth="300"
+                               prefHeight="50"
+                               style="-fx-font-size: 16px;
+                                      -fx-background-radius: 10;
+                                      -fx-border-color: #b2bec3;
+                                      -fx-border-radius: 10;"/>
 
                 <Button text="Login"
                         fx:id="loginButton"
-                        prefWidth="260"
-                        prefHeight="45"
+                        prefWidth="300"
+                        prefHeight="55"
                         onAction="#handleLogin"
                         style="-fx-background-color: #6c5ce7;
                                -fx-text-fill: white;
-                               -fx-font-size: 15px;
+                               -fx-font-size: 17px;
                                -fx-font-weight: bold;
-                               -fx-background-radius: 10;
+                               -fx-background-radius: 12;
                                -fx-cursor: hand;"/>
 
                 <Label fx:id="errorLabel"
                        textFill="red"
-                       style="-fx-font-size: 13px;"/>
+                       style="-fx-font-size: 14px;"/>
             </VBox>
 
             <!-- Candidate Button -->
             <Button text="🧑‍💼 Candidate Portal"
                     fx:id="candidateButton"
-                    prefWidth="260"
-                    prefHeight="45"
+                    prefWidth="300"
+                    prefHeight="55"
                     onAction="#candidateButtonClicked"
                     style="-fx-background-color: #00cec9;
                            -fx-text-fill: white;
-                           -fx-font-size: 15px;
+                           -fx-font-size: 17px;
                            -fx-font-weight: bold;
-                           -fx-background-radius: 10;
+                           -fx-background-radius: 12;
                            -fx-cursor: hand;"/>
         </VBox>
     </center>
@@ -94,13 +103,11 @@
     <bottom>
         <HBox alignment="CENTER">
             <padding>
-                <Insets bottom="15"/>
+                <Insets bottom="20"/>
             </padding>
-
             <Label text="© 2026 HR System"
                    style="-fx-text-fill: #636e72;
-                          -fx-font-size: 12px;"/>
+                          -fx-font-size: 13px;"/>
         </HBox>
     </bottom>
-
 </BorderPane>

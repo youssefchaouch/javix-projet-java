@@ -4,6 +4,7 @@ import Entite.Application;
 import Entite.Candidate;
 import Services.ApplicationService;
 import Services.CandidateService;
+import Utlis.InputChecker;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -46,6 +47,7 @@ public class JobApplicationController {
 
     private CandidateService candidateService;
     private ApplicationService applicationService;
+    private InputChecker ic = new InputChecker();
 
     @FXML
     public void initialize() {
@@ -61,12 +63,31 @@ public class JobApplicationController {
 
     private void saveCandidate() {
         try {
-            String email = emailField.getText();
-            if(!isValidEmail(email)){
-                errorLabel.setText("Invalid email format!");
-                clearFields();
+            if (ic.isEmpty(firstNameField) ||
+                    ic.isEmpty(lastNameField) ||
+                    ic.isEmpty(emailField) ||
+                    ic.isEmpty(phoneField) ||
+                    ic.isEmpty(resumeArea) ||
+                    ic.isEmpty(jobOfferField)) {
+                errorLabel.setText("All fields are required!");
                 return;
             }
+
+            if (!ic.isValidEmail(emailField.getText())) {
+                errorLabel.setText("Invalid email format!");
+                return;
+            }
+
+            if (!ic.isValidPhone(phoneField.getText())) {
+                errorLabel.setText("Invalid phone number!");
+                return;
+            }
+
+            if (!ic.isValidInteger(jobOfferField.getText())) {
+                errorLabel.setText("Job Offer ID must be a number!");
+                return;
+            }
+
             Candidate candidate = new Candidate();
             Application application = new Application();
 

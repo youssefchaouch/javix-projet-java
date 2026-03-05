@@ -2,6 +2,7 @@ package Controllers;
 
 import Entite.JobOffer;
 import Services.JobOfferService;
+import Utlis.InputChecker;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -28,17 +29,28 @@ public class JobOfferController {
     private Button backButton;
 
     private JobOfferService service = new JobOfferService();
+    private InputChecker ic = new InputChecker();
 
     @FXML
     private void handleAddOffer() {
-
         try {
-            if (titleField.getText().isEmpty() ||
-                    descriptionField.getText().isEmpty() ||
-                    statusField.getText().isEmpty() ||
-                    createdByField.getText().isEmpty()) {
-
+            if (ic.isEmpty(titleField) ||
+                    ic.isEmpty(descriptionField) ||
+                    ic.isEmpty(statusField) ||
+                    ic.isEmpty(createdByField)) {
                 showAlert("All fields are required.");
+                return;
+            }
+
+            // Enforce status constraint
+            String status = statusField.getText().trim().toUpperCase();
+            if (!(status.equals("OPEN") || status.equals("CLOSED"))) {
+                showAlert("Status must be either 'OPEN' or 'CLOSED'.");
+                return;
+            }
+
+            if (!ic.isValidInteger(createdByField.getText())) {
+                showAlert("Created By must be a valid number.");
                 return;
             }
 
