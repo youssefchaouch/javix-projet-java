@@ -65,7 +65,9 @@
                                -fx-background-radius:20;
                                -fx-padding:8 20 8 20;"/>
 
-                <Button text="Back"
+                <Button fx:id="btnBack"
+                        text="Back"
+                        onAction="#goBackToEmployeeMenu"
                         style="-fx-background-color:#3498db;
                                -fx-text-fill:white;
                                -fx-font-weight:bold;

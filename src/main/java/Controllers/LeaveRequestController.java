@@ -146,6 +146,24 @@ public class LeaveRequestController {
 
     }
 
+    @FXML
+    void goBackToEmployeeMenu(ActionEvent event) {
+        try {
+            javafx.fxml.FXMLLoader loader = new javafx.fxml.FXMLLoader(
+                    getClass().getResource("/EmployeeMenu.fxml")
+            );
+            javafx.scene.Parent root = loader.load();
+
+            // Get current stage
+            javafx.stage.Stage stage = (javafx.stage.Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new javafx.scene.Scene(root));
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+            showAlert("Error", "Unable to return to Employee Menu", Alert.AlertType.ERROR);
+        }
+    }
+
 
     private void refreshTable() {
 
