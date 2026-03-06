@@ -13,16 +13,30 @@
 
     <!-- Header -->
     <top>
-        <VBox style="-fx-background-color: #74b9ff;">
+        <BorderPane style="-fx-background-color: #74b9ff;">
             <padding>
                 <Insets top="25" bottom="25" left="30" right="30"/>
             </padding>
-            <Label text="Payroll Management System"
-                   style="-fx-text-fill: white;
-                          -fx-font-size: 28px;
-                          -fx-font-weight: bold;
-                          -fx-font-family: 'Segoe UI';"/>
-        </VBox>
+            <left>
+                <Label text="Payroll Management System"
+                       style="-fx-text-fill: white;
+                              -fx-font-size: 28px;
+                              -fx-font-weight: bold;
+                              -fx-font-family: 'Segoe UI';"/>
+            </left>
+            <right>
+                <Button fx:id="backButton"
+                        text="⬅ Back to HR Menu"
+                        onAction="#backToHRMenu"
+                        style="-fx-background-color: #d63031;
+                               -fx-text-fill: white;
+                               -fx-font-size: 16px;
+                               -fx-font-weight: bold;
+                               -fx-background-radius: 10;
+                               -fx-padding: 12 20;
+                               -fx-cursor: hand;"/>
+            </right>
+        </BorderPane>
     </top>
 
     <!-- Main Content -->

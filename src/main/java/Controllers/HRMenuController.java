@@ -26,6 +26,13 @@ public class HRMenuController {
     }
 
     @FXML
+    private void payrollClicked(ActionEvent event) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("/PayrollView.fxml"));
+        Scene scene = ((Node) event.getSource()).getScene();
+        scene.setRoot(root);
+    }
+
+    @FXML
     private void handleLogout() {
         try {
             javafx.fxml.FXMLLoader loader = new javafx.fxml.FXMLLoader(

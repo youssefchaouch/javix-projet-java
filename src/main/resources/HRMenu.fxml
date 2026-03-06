@@ -101,6 +101,19 @@
                                -fx-background-radius: 12;
                                -fx-padding: 14 24;
                                -fx-cursor: hand;"/>
+
+                <Button text="💰 Payroll Management"
+                        fx:id="payrollButton"
+                        prefWidth="280"
+                        prefHeight="55"
+                        onAction="#payrollClicked"
+                        style="-fx-background-color: #e17055;
+                               -fx-text-fill: white;
+                               -fx-font-size: 16px;
+                               -fx-font-weight: bold;
+                               -fx-background-radius: 12;
+                               -fx-padding: 14 24;
+                               -fx-cursor: hand;"/>
             </VBox>
         </VBox>
     </center>

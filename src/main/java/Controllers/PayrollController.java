@@ -3,7 +3,10 @@ package Controllers;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.print.PrinterJob;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.PieChart;
@@ -11,6 +14,7 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.Region;
+import javafx.stage.Stage;
 
 import Entite.Employee;
 import Entite.Payroll;
@@ -28,6 +32,7 @@ public class PayrollController {
     @FXML private Label lblFinalSalary, lblTotalMonth, lblEmployeeCount;
     @FXML private Label lblTotalRole;
     @FXML private TextField txtRole;
+    @FXML private Button backButton;
     
     @FXML private TableView<Payroll> tablePayroll;
     @FXML private TableColumn<Payroll, Integer> colId, colEmployee, colMonth, colYear, colLeave;
@@ -272,6 +277,23 @@ public class PayrollController {
         a.setContentText(message);
         a.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
         a.showAndWait();
+    }
+
+    @FXML
+    private void backToHRMenu() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/HRMenu.fxml"));
+            Parent root = loader.load();
+
+            // Get current stage
+            Stage stage = (Stage) backButton.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("HR Menu");
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+            new Alert(AlertType.ERROR, "Unable to return to HR Menu").showAndWait();
+        }
     }
 
     // ============ INNER CLASS FOR TABLE DATA ============
