@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="Controllers.LeaveValidationController"
+            prefHeight="500.0" prefWidth="900.0"
+            style="-fx-background-color:#f4f6f9;">
+
+    <VBox spacing="15"
+          AnchorPane.topAnchor="0"
+          AnchorPane.leftAnchor="0"
+          AnchorPane.rightAnchor="0"
+          AnchorPane.bottomAnchor="0">
+
+        <!-- Header -->
+        <Label text="Leave Requests Validation"
+               style="-fx-background-color: linear-gradient(to right,#6a5acd,#7b68ee);
+                      -fx-text-fill:white;
+                      -fx-font-size:18px;
+                      -fx-font-weight:bold;
+                      -fx-padding:15;
+                      -fx-max-width:Infinity;" />
+
+        <!-- Main Card -->
+        <VBox spacing="15"
+              style="-fx-background-color:white;
+                     -fx-padding:20;
+                     -fx-background-radius:8;
+                     -fx-border-radius:8;
+                     -fx-border-color:#dddddd;"
+              VBox.vgrow="ALWAYS">
+
+            <!-- Table -->
+            <TableView fx:id="tableLeave"
+                       prefHeight="300"
+                       style="-fx-background-color:white;
+                              -fx-border-color:#dddddd;">
+
+                <columns>
+                    <TableColumn fx:id="colIdLeave" text="Leave ID"/>
+                    <TableColumn fx:id="colEmployee" text="Employee ID"/>
+                    <TableColumn fx:id="colStartDate" text="Start Date"/>
+                    <TableColumn fx:id="colEndDate" text="End Date"/>
+                    <TableColumn fx:id="colReason" text="Reason"/>
+                    <TableColumn fx:id="colStatus" text="Status"/>
+                </columns>
+            </TableView>
+
+            <!-- Action Buttons -->
+            <HBox spacing="12">
+
+                <Button text="Approve"
+                        fx:id="btnApprove"
+                        onAction="#approveLeave"
+                        style="-fx-background-color:#1abc9c;
+                               -fx-text-fill:white;
+                               -fx-font-weight:bold;
+                               -fx-background-radius:20;
+                               -fx-padding:8 22 8 22;" />
+
+                <Button text="Reject"
+                        fx:id="btnReject"
+                        onAction="#rejectLeave"
+                        style="-fx-background-color:#e74c3c;
+                               -fx-text-fill:white;
+                               -fx-font-weight:bold;
+                               -fx-background-radius:20;
+                               -fx-padding:8 22 8 22;" />
+
+            </HBox>
+
+        </VBox>
+
+    </VBox>
+
+</AnchorPane>
