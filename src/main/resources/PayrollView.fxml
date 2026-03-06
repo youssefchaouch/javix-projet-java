@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
@@ -298,14 +301,7 @@
                                       -fx-font-weight: bold;
                                       -fx-text-fill: #2d3436;"/>
 
-                        <TableView fx:id="tableSalaryByRole" prefHeight="200">
-                            <columns>
-                                <TableColumn fx:id="colRoleName" text="Role" prefWidth="150"/>
-                                <TableColumn fx:id="colRoleEmployeeCount" text="Employees" prefWidth="100"/>
-                                <TableColumn fx:id="colRoleTotalSalary" text="Total Salary" prefWidth="150"/>
-                                <TableColumn fx:id="colRoleAvgSalary" text="Avg Salary" prefWidth="150"/>
-                            </columns>
-                        </TableView>
+                        <PieChart fx:id="pieSalaryByRole" prefHeight="300" title="Total Salary by Role"/>
                     </VBox>
 
                     <!-- Monthly Salary Breakdown -->
@@ -321,8 +317,6 @@
                                       -fx-text-fill: #2d3436;"/>
 
                         <HBox spacing="10" alignment="CENTER_LEFT">
-                            <Label text="Select Month:"/>
-                            <ComboBox fx:id="monthCombo" prefWidth="100"/>
                             <Label text="Year:"/>
                             <ComboBox fx:id="yearCombo" prefWidth="100"/>
                             <Button text="Load Data"
@@ -334,14 +328,14 @@
                                            -fx-padding: 8 16;"/>
                         </HBox>
 
-                        <TableView fx:id="tableMonthlyStats" prefHeight="250">
-                            <columns>
-                                <TableColumn fx:id="colRole" text="Role" prefWidth="100"/>
-                                <TableColumn fx:id="colRoleCount" text="Count" prefWidth="80"/>
-                                <TableColumn fx:id="colRoleTotal" text="Total Salary" prefWidth="150"/>
-                                <TableColumn fx:id="colRoleAverage" text="Average Salary" prefWidth="150"/>
-                            </columns>
-                        </TableView>
+                        <LineChart fx:id="lineMonthlyStats" prefHeight="300" title="Monthly Salary Trends">
+                            <xAxis>
+                                <NumberAxis label="Month"/>
+                            </xAxis>
+                            <yAxis>
+                                <NumberAxis label="Total Salary (TND)"/>
+                            </yAxis>
+                        </LineChart>
                     </VBox>
 
                     <!-- Refresh Button -->

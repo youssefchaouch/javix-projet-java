@@ -4,6 +4,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.print.PrinterJob;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.PieChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.Region;
@@ -31,22 +35,14 @@ public class PayrollController {
 
     // Statistics Tab Fields
     @FXML private Label kpiEmployees, kpiTotalSalaries, kpiAverageSalary;
-    @FXML private TableView<RoleSalaryData> tableSalaryByRole;
-    @FXML private TableColumn<RoleSalaryData, String> colRoleName;
-    @FXML private TableColumn<RoleSalaryData, Integer> colRoleEmployeeCount;
-    @FXML private TableColumn<RoleSalaryData, Double> colRoleTotalSalary, colRoleAvgSalary;
+    @FXML private PieChart pieSalaryByRole;
     
-    @FXML private TableView<RoleSalaryData> tableMonthlyStats;
-    @FXML private TableColumn<RoleSalaryData, String> colRole;
-    @FXML private TableColumn<RoleSalaryData, Integer> colRoleCount;
-    @FXML private TableColumn<RoleSalaryData, Double> colRoleTotal, colRoleAverage;
-    @FXML private ComboBox<Integer> monthCombo, yearCombo;
+    @FXML private LineChart<Number, Number> lineMonthlyStats;
+    @FXML private ComboBox<Integer> yearCombo;
 
     private PayrollService payrollService = new PayrollService();
     private EmployeeService employeeService = new EmployeeService();
     private ObservableList<Payroll> payrollList = FXCollections.observableArrayList();
-    private ObservableList<RoleSalaryData> roleSalaryDataList = FXCollections.observableArrayList();
-    private ObservableList<RoleSalaryData> monthlySalaryData = FXCollections.observableArrayList();
 
     @FXML
     public void initialize() {
@@ -69,28 +65,10 @@ public class PayrollController {
 
     // ============ STATISTICS TAB INITIALIZATION ============
     private void initializeStatisticsTab() {
-        // Initialize month and year dropdowns
-        ObservableList<Integer> months = FXCollections.observableArrayList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12);
-        monthCombo.setItems(months);
-        monthCombo.setValue(1);
-
+        // Initialize year dropdown
         ObservableList<Integer> years = FXCollections.observableArrayList(2024, 2025, 2026, 2027, 2028);
         yearCombo.setItems(years);
         yearCombo.setValue(2026);
-
-        // Initialize table columns for salary by role
-        colRoleName.setCellValueFactory(cellData -> cellData.getValue().roleProperty());
-        colRoleEmployeeCount.setCellValueFactory(cellData -> cellData.getValue().countProperty().asObject());
-        colRoleTotalSalary.setCellValueFactory(cellData -> cellData.getValue().totalSalaryProperty().asObject());
-        colRoleAvgSalary.setCellValueFactory(cellData -> cellData.getValue().averageSalaryProperty().asObject());
-        tableSalaryByRole.setItems(roleSalaryDataList);
-
-        // Initialize table columns for monthly stats
-        colRole.setCellValueFactory(cellData -> cellData.getValue().roleProperty());
-        colRoleCount.setCellValueFactory(cellData -> cellData.getValue().countProperty().asObject());
-        colRoleTotal.setCellValueFactory(cellData -> cellData.getValue().totalSalaryProperty().asObject());
-        colRoleAverage.setCellValueFactory(cellData -> cellData.getValue().averageSalaryProperty().asObject());
-        tableMonthlyStats.setItems(monthlySalaryData);
     }
 
     // ============ PAYROLL FUNCTIONS ============
@@ -247,25 +225,33 @@ public class PayrollController {
                 .addEmployee(emp.getSalary());
         }
         
-        roleSalaryDataList.setAll(roleDataMap.values());
+        ObservableList<PieChart.Data> pieData = FXCollections.observableArrayList();
+        for (RoleSalaryData data : roleDataMap.values()) {
+            PieChart.Data slice = new PieChart.Data(data.getRole(), data.getTotalSalary());
+            // Set the label to show role and value
+            slice.setName(data.getRole() + ": " + String.format("%.2f TND", data.getTotalSalary()));
+            pieData.add(slice);
+        }
+        pieSalaryByRole.setData(pieData);
     }
 
     @FXML
     private void loadMonthlyData() {
         try {
-            int month = monthCombo.getValue();
             int year = yearCombo.getValue();
             
-            List<Employee> employees = employeeService.getAll();
-            Map<String, RoleSalaryData> roleDataMap = new HashMap<>();
+            // Create data series for the line chart
+            XYChart.Series<Number, Number> series = new XYChart.Series<>();
+            series.setName("Total Salary per Month");
             
-            for (Employee emp : employees) {
-                String role = emp.getRole();
-                roleDataMap.computeIfAbsent(role, k -> new RoleSalaryData(role))
-                    .addEmployee(emp.getSalary());
+            // Get total salary for each month of the selected year
+            for (int month = 1; month <= 12; month++) {
+                double totalSalary = payrollService.totalSalaryByMonth(month, year);
+                series.getData().add(new XYChart.Data<>(month, totalSalary));
             }
             
-            monthlySalaryData.setAll(roleDataMap.values());
+            lineMonthlyStats.getData().clear();
+            lineMonthlyStats.getData().add(series);
             
         } catch (Exception e) {
             showAlert("Error loading monthly data: " + e.getMessage());
