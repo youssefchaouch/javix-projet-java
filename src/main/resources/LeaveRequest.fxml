@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="Controllers.LeaveRequestController"
+            style="-fx-background-color:#f4f6f9;"
+            prefHeight="600.0" prefWidth="900.0">
+
+    <VBox spacing="15" AnchorPane.topAnchor="0" AnchorPane.leftAnchor="0"
+          AnchorPane.rightAnchor="0" AnchorPane.bottomAnchor="0">
+
+        <!-- Header -->
+        <Label text="Leave Request Form"
+               style="-fx-background-color: linear-gradient(to right,#6a5acd,#7b68ee);
+                      -fx-text-fill:white;
+                      -fx-font-size:18px;
+                      -fx-font-weight:bold;
+                      -fx-padding:15;
+                      -fx-max-width:Infinity;" />
+
+        <!-- Main Card -->
+        <VBox spacing="15" style="-fx-background-color:white;
+                                  -fx-padding:20;
+                                  -fx-background-radius:8;
+                                  -fx-border-radius:8;
+                                  -fx-border-color:#dddddd;"
+              VBox.vgrow="ALWAYS">
+
+            <!-- Form -->
+            <GridPane hgap="10" vgap="10">
+                <columnConstraints>
+                    <ColumnConstraints percentWidth="30"/>
+                    <ColumnConstraints percentWidth="70"/>
+                </columnConstraints>
+
+                <Label text="Employee ID:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtIdEmployee" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                <Label text="Start Date:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <DatePicker fx:id="dpStartDate" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                <Label text="End Date:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                <DatePicker fx:id="dpEndDate" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+                <Label text="Reason:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                <TextArea fx:id="txtReason" GridPane.rowIndex="3" GridPane.columnIndex="1"
+                          prefRowCount="3"/>
+
+                <Label text="Status:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+                <ChoiceBox fx:id="cbStatus" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+            </GridPane>
+
+            <!-- Buttons -->
+            <HBox spacing="10">
+
+                <Button fx:id="btnSubmit"
+                        text="Submit"
+                        onAction="#submitLeaveRequest"
+                        style="-fx-background-color:#1abc9c;
+                               -fx-text-fill:white;
+                               -fx-font-weight:bold;
+                               -fx-background-radius:20;
+                               -fx-padding:8 20 8 20;"/>
+
+                <Button text="Back"
+                        style="-fx-background-color:#3498db;
+                               -fx-text-fill:white;
+                               -fx-font-weight:bold;
+                               -fx-background-radius:20;
+                               -fx-padding:8 20 8 20;"/>
+
+                <!-- New Button -->
+                <Button text="Check Leave Balance"
+                        onAction="#checkLeaveBalance"
+                        style="-fx-background-color:#9b59b6;
+                               -fx-text-fill:white;
+                               -fx-font-weight:bold;
+                               -fx-background-radius:20;
+                               -fx-padding:8 20 8 20;"/>
+
+            </HBox>
+
+            <!-- Balance Label -->
+            <Label fx:id="lblBalance"
+                   text=""
+                   style="-fx-font-size:14px; -fx-font-weight:bold; -fx-text-fill:#2c3e50;"/>
+
+            <!-- Table Title -->
+            <Label text="Leave Requests Table"
+                   style="-fx-font-size:15px; -fx-font-weight:bold;"/>
+
+            <!-- Table -->
+            <TableView fx:id="tableLeave" prefHeight="250"
+                       style="-fx-background-color:white;
+                              -fx-border-color:#dddddd;">
+
+                <columns>
+                    <TableColumn fx:id="colIdLeave" text="Leave ID"/>
+                    <TableColumn fx:id="colIdEmployee" text="Employee ID"/>
+                    <TableColumn fx:id="colStartDate" text="Start Date"/>
+                    <TableColumn fx:id="colEndDate" text="End Date"/>
+                    <TableColumn fx:id="colReason" text="Reason"/>
+                    <TableColumn fx:id="colStatus" text="Status"/>
+                    <TableColumn fx:id="colRequestedAt" text="Requested At"/>
+                    <TableColumn fx:id="colValidatedBy" text="Validated By"/>
+                </columns>
+            </TableView>
+
+        </VBox>
+
+    </VBox>
+
+</AnchorPane>
