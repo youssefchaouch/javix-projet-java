@@ -13,13 +13,6 @@ public class EmployeeMenuController {
     @FXML private Button logoutButton;
 
     @FXML
-    private void viewJobOffersClicked(ActionEvent event) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/JobOffer.fxml"));
-        Scene scene = ((Node) event.getSource()).getScene();
-        scene.setRoot(root);
-    }
-
-    @FXML
     private void requestLeaveClicked(ActionEvent event) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/LeaveRequest.fxml"));
         Scene scene = ((Node) event.getSource()).getScene();

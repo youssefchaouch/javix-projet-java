@@ -114,6 +114,19 @@
                                -fx-background-radius: 12;
                                -fx-padding: 14 24;
                                -fx-cursor: hand;"/>
+
+                <Button text="📋 Validate Leave Requests"
+                        fx:id="validateLeaveButton"
+                        prefWidth="280"
+                        prefHeight="55"
+                        onAction="#validateLeaveRequestsClicked"
+                        style="-fx-background-color: #6c5ce7;
+                               -fx-text-fill: white;
+                               -fx-font-size: 16px;
+                               -fx-font-weight: bold;
+                               -fx-background-radius: 12;
+                               -fx-padding: 14 24;
+                               -fx-cursor: hand;"/>
             </VBox>
         </VBox>
     </center>

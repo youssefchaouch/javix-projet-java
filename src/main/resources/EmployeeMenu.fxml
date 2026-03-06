@@ -76,20 +76,7 @@
                               -fx-font-weight: bold;
                               -fx-text-fill: #0984e3;"/>
 
-                <Button text="📋 View Job Offers"
-                        fx:id="viewJobOffersButton"
-                        prefWidth="280"
-                        prefHeight="55"
-                        onAction="#viewJobOffersClicked"
-                        style="-fx-background-color: #0984e3;
-                               -fx-text-fill: white;
-                               -fx-font-size: 16px;
-                               -fx-font-weight: bold;
-                               -fx-background-radius: 12;
-                               -fx-padding: 14 24;
-                               -fx-cursor: hand;"/>
-
-                <Button text="📅 Request Leave"
+                <Button text=" Request Leave"
                         fx:id="requestLeaveButton"
                         prefWidth="280"
                         prefHeight="55"
