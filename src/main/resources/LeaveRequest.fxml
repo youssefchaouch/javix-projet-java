@@ -37,8 +37,7 @@
                 </columnConstraints>
 
                 <Label text="Employee ID:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-                <TextField fx:id="txtIdEmployee" GridPane.rowIndex="0" GridPane.columnIndex="1"
-                           style="-fx-background-radius:5; -fx-border-radius:5;"/>
+                <TextField fx:id="txtIdEmployee" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
 
                 <Label text="Start Date:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
                 <DatePicker fx:id="dpStartDate" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
@@ -56,6 +55,7 @@
 
             <!-- Buttons -->
             <HBox spacing="10">
+
                 <Button fx:id="btnSubmit"
                         text="Submit"
                         onAction="#submitLeaveRequest"
@@ -71,7 +71,22 @@
                                -fx-font-weight:bold;
                                -fx-background-radius:20;
                                -fx-padding:8 20 8 20;"/>
+
+                <!-- New Button -->
+                <Button text="Check Leave Balance"
+                        onAction="#checkLeaveBalance"
+                        style="-fx-background-color:#9b59b6;
+                               -fx-text-fill:white;
+                               -fx-font-weight:bold;
+                               -fx-background-radius:20;
+                               -fx-padding:8 20 8 20;"/>
+
             </HBox>
+
+            <!-- Balance Label -->
+            <Label fx:id="lblBalance"
+                   text=""
+                   style="-fx-font-size:14px; -fx-font-weight:bold; -fx-text-fill:#2c3e50;"/>
 
             <!-- Table Title -->
             <Label text="Leave Requests Table"
