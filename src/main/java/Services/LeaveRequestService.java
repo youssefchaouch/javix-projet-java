@@ -20,7 +20,8 @@ public class LeaveRequestService implements IService<LeaveRequest> {
     @Override
     public void add(LeaveRequest leave) {
         try (Statement st = con.createStatement()) {
-            String sql = "INSERT INTO leave_request (id_employee, start_date, end_date, reason, status, requested_at, validated_by) VALUES (" +
+            String sql = "INSERT INTO leave_request (id_employee, start_date, end_date, reason, status, requested_at, validated_by) VALUES ("
+                    +
                     leave.getIdEmployee() + ", " +
                     "'" + leave.getStartDate() + "', " +
                     "'" + leave.getEndDate() + "', " +
@@ -66,7 +67,7 @@ public class LeaveRequestService implements IService<LeaveRequest> {
     public List<LeaveRequest> getAll() {
         List<LeaveRequest> list = new ArrayList<>();
         try (Statement st = con.createStatement();
-             ResultSet rs = st.executeQuery("SELECT * FROM leave_request")) {
+                ResultSet rs = st.executeQuery("SELECT * FROM leave_request")) {
 
             while (rs.next()) {
                 LeaveRequest lr = new LeaveRequest(
@@ -77,8 +78,7 @@ public class LeaveRequestService implements IService<LeaveRequest> {
                         rs.getString("reason"),
                         rs.getString("status"),
                         rs.getTimestamp("requested_at").toLocalDateTime(),
-                        rs.getObject("validated_by") == null ? null : rs.getInt("validated_by")
-                );
+                        rs.getObject("validated_by") == null ? null : rs.getInt("validated_by"));
                 list.add(lr);
             }
 
@@ -91,7 +91,7 @@ public class LeaveRequestService implements IService<LeaveRequest> {
     @Override
     public LeaveRequest getById(int id) {
         try (Statement st = con.createStatement();
-             ResultSet rs = st.executeQuery("SELECT * FROM leave_request WHERE id_leave=" + id)) {
+                ResultSet rs = st.executeQuery("SELECT * FROM leave_request WHERE id_leave=" + id)) {
 
             if (rs.next()) {
                 return new LeaveRequest(
@@ -102,8 +102,7 @@ public class LeaveRequestService implements IService<LeaveRequest> {
                         rs.getString("reason"),
                         rs.getString("status"),
                         rs.getTimestamp("requested_at").toLocalDateTime(),
-                        rs.getObject("validated_by") == null ? null : rs.getInt("validated_by")
-                );
+                        rs.getObject("validated_by") == null ? null : rs.getInt("validated_by"));
             }
 
         } catch (SQLException e) {
@@ -111,4 +110,30 @@ public class LeaveRequestService implements IService<LeaveRequest> {
         }
         return null;
     }
+
+    public int countApprovedLeaveDays(int employeeId, int month, int year) {
+        int totalDays = 0;
+        LocalDate startMonth = LocalDate.of(year, month, 1);
+        LocalDate endMonth = startMonth.withDayOfMonth(startMonth.lengthOfMonth());
+
+        try (PreparedStatement pst = con.prepareStatement(
+                "SELECT start_date, end_date FROM leave_request WHERE id_employee=? AND status='Approved'")) {
+            pst.setInt(1, employeeId);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                LocalDate start = rs.getDate("start_date").toLocalDate();
+                LocalDate end = rs.getDate("end_date").toLocalDate();
+
+                if (!start.isAfter(endMonth) && !end.isBefore(startMonth)) {
+                    LocalDate actualStart = start.isBefore(startMonth) ? startMonth : start;
+                    LocalDate actualEnd = end.isAfter(endMonth) ? endMonth : end;
+                    totalDays += (int) java.time.temporal.ChronoUnit.DAYS.between(actualStart, actualEnd) + 1;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return totalDays;
+    }
+
 }

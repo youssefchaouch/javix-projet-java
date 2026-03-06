@@ -65,6 +65,14 @@ public class PayrollTest {
                     " | GeneratedAt: " + p.getGeneratedAt());
         }
 
+        // 7️⃣ generate monthly payroll and compute totals
+        service.generateMonthlyPayroll(2, 2026);
+        System.out.println("Generated payroll for all employees for 2/2026");
+        double totalMonth = service.totalSalaryByMonth(2, 2026);
+        System.out.println("Total salary for 2/2026 = " + totalMonth);
+        double totalManager = service.totalSalaryByRole("Manager", 2, 2026);
+        System.out.println("Total salary for role Manager in 2/2026 = " + totalManager);
+
         System.out.println("\nSimple CRUD test completed!");
     }
 }

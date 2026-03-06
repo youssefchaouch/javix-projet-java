@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml" 
+            fx:controller="Controllers.PayrollController"
+            style="-fx-background-color: #f7f9fc;">
+
+    <!-- Header -->
+    <top>
+        <VBox style="-fx-background-color: #74b9ff;">
+            <padding>
+                <Insets top="25" bottom="25" left="30" right="30"/>
+            </padding>
+            <Label text="Payroll Management System"
+                   style="-fx-text-fill: white;
+                          -fx-font-size: 28px;
+                          -fx-font-weight: bold;
+                          -fx-font-family: 'Segoe UI';"/>
+        </VBox>
+    </top>
+
+    <!-- Main Content -->
+    <center>
+        <TabPane style="-fx-padding: 20;">
+            
+            <!-- TAB 1: PAYROLL MANAGEMENT -->
+            <Tab text="Payroll Management" closable="false">
+                <ScrollPane fitToWidth="true" style="-fx-background-color: #f7f9fc;">
+                    <VBox spacing="20" style="-fx-padding: 30;">
+                    
+                    <!-- Employee Count Card -->
+                    <HBox spacing="30" style="-fx-background-color: #ffffff;
+                                              -fx-background-radius: 12;
+                                              -fx-border-color: #dfe6e9;
+                                              -fx-border-radius: 12;
+                                              -fx-padding: 25;">
+                        <Label text="Total Employees:"
+                               style="-fx-font-size: 16px;
+                                      -fx-font-weight: bold;
+                                      -fx-text-fill: #2d3436;"/>
+                        <Label fx:id="lblEmployeeCount"
+                               text="0"
+                               style="-fx-font-size: 24px;
+                                      -fx-font-weight: bold;
+                                      -fx-text-fill: #2d3436;"/>
+                    </HBox>
+
+                    <!-- Payroll Form -->
+                    <VBox spacing="15" style="-fx-background-color: #ffffff;
+                                             -fx-background-radius: 12;
+                                             -fx-border-color: #dfe6e9;
+                                             -fx-border-radius: 12;
+                                             -fx-padding: 25;">
+                        
+                        <Label text="Calculate Final Salary"
+                               style="-fx-font-size: 18px;
+                                      -fx-font-weight: bold;
+                                      -fx-text-fill: #2d3436;"/>
+
+                        <GridPane hgap="20" vgap="15" style="-fx-padding: 10;">
+                            <columnConstraints>
+                                <ColumnConstraints prefWidth="120"/>
+                                <ColumnConstraints hgrow="ALWAYS"/>
+                            </columnConstraints>
+
+                            <Label text="Employee ID:" GridPane.rowIndex="0"/>
+                            <TextField fx:id="txtEmployeeId" 
+                                       promptText="Select employee ID"
+                                       GridPane.rowIndex="0" GridPane.columnIndex="1"
+                                       style="-fx-background-radius: 8;
+                                              -fx-border-color: #b2bec3;
+                                              -fx-border-radius: 8;
+                                              -fx-padding: 8;"/>
+
+                            <Label text="Month:" GridPane.rowIndex="1"/>
+                            <TextField fx:id="txtMonth" 
+                                       promptText="1-12"
+                                       GridPane.rowIndex="1" GridPane.columnIndex="1"
+                                       style="-fx-background-radius: 8;
+                                              -fx-border-color: #b2bec3;
+                                              -fx-border-radius: 8;
+                                              -fx-padding: 8;"/>
+
+                            <Label text="Year:" GridPane.rowIndex="2"/>
+                            <TextField fx:id="txtYear" 
+                                       promptText="e.g., 2026"
+                                       GridPane.rowIndex="2" GridPane.columnIndex="1"
+                                       style="-fx-background-radius: 8;
+                                              -fx-border-color: #b2bec3;
+                                              -fx-border-radius: 8;
+                                              -fx-padding: 8;"/>
+
+                            <Label text="Leave Days:" GridPane.rowIndex="3"/>
+                            <TextField fx:id="txtLeaveDays" 
+                                       promptText="Number of leave days"
+                                       GridPane.rowIndex="3" GridPane.columnIndex="1"
+                                       style="-fx-background-radius: 8;
+                                              -fx-border-color: #b2bec3;
+                                              -fx-border-radius: 8;
+                                              -fx-padding: 8;"/>
+
+                            <Label text="Final Salary:" GridPane.rowIndex="4"/>
+                            <Label fx:id="lblFinalSalary" 
+                                   text="0.00 TND"
+                                   GridPane.rowIndex="4" GridPane.columnIndex="1"
+                                   style="-fx-font-size: 14px;
+                                          -fx-font-weight: bold;
+                                          -fx-text-fill: #00b894;
+                                          -fx-padding: 8;"/>
+                        </GridPane>
+
+                        <HBox spacing="10" alignment="CENTER_RIGHT">
+                            <Button text="Calculate"
+                                    onAction="#calculateFinalSalary"
+                                    style="-fx-background-color: #55efc4;
+                                           -fx-text-fill: #2d3436;
+                                           -fx-font-weight: bold;
+                                           -fx-background-radius: 8;
+                                           -fx-padding: 10 20;"/>
+                            <Button text="Clear"
+                                    onAction="#clearForm"
+                                    style="-fx-background-color: #ffeaa7;
+                                           -fx-text-fill: #2d3436;
+                                           -fx-font-weight: bold;
+                                           -fx-background-radius: 8;
+                                           -fx-padding: 10 20;"/>
+                        </HBox>
+                    </VBox>
+
+                    <!-- Generate Payroll Section -->
+                    <VBox spacing="15" style="-fx-background-color: #ffffff;
+                                             -fx-background-radius: 12;
+                                             -fx-border-color: #dfe6e9;
+                                             -fx-border-radius: 12;
+                                             -fx-padding: 25;">
+                        
+                        <Label text="Generate Monthly Payroll"
+                               style="-fx-font-size: 18px;
+                                      -fx-font-weight: bold;
+                                      -fx-text-fill: #2d3436;"/>
+
+                        <GridPane hgap="20" vgap="15" style="-fx-padding: 10;">
+                            <columnConstraints>
+                                <ColumnConstraints prefWidth="120"/>
+                                <ColumnConstraints hgrow="ALWAYS"/>
+                            </columnConstraints>
+
+                            <Label text="Month:" GridPane.rowIndex="0"/>
+                            <TextField fx:id="txtGenMonth" 
+                                       promptText="1-12"
+                                       GridPane.rowIndex="0" GridPane.columnIndex="1"
+                                       style="-fx-background-radius: 8;
+                                              -fx-border-color: #b2bec3;
+                                              -fx-border-radius: 8;
+                                              -fx-padding: 8;"/>
+
+                            <Label text="Year:" GridPane.rowIndex="1"/>
+                            <TextField fx:id="txtGenYear" 
+                                       promptText="e.g., 2026"
+                                       GridPane.rowIndex="1" GridPane.columnIndex="1"
+                                       style="-fx-background-radius: 8;
+                                              -fx-border-color: #b2bec3;
+                                              -fx-border-radius: 8;
+                                              -fx-padding: 8;"/>
+
+                            <Label text="Total for Month:" GridPane.rowIndex="2"/>
+                            <Label fx:id="lblTotalMonth" 
+                                   text="0.00 TND"
+                                   GridPane.rowIndex="2" GridPane.columnIndex="1"
+                                   style="-fx-font-size: 14px;
+                                          -fx-font-weight: bold;
+                                          -fx-text-fill: #0984e3;
+                                          -fx-padding: 8;"/>
+                        </GridPane>
+
+                        <HBox spacing="10" alignment="CENTER_RIGHT">
+                            <Button text="Generate Payroll for All"
+                                    onAction="#generatePayroll"
+                                    style="-fx-background-color: #55efc4;
+                                           -fx-text-fill: #2d3436;
+                                           -fx-font-weight: bold;
+                                           -fx-background-radius: 8;
+                                           -fx-padding: 10 20;"/>
+                        </HBox>
+                    </VBox>
+
+                    <!-- Payroll Table -->
+                    <VBox spacing="10" style="-fx-background-color: #ffffff;
+                                             -fx-background-radius: 12;
+                                             -fx-border-color: #dfe6e9;
+                                             -fx-border-radius: 12;
+                                             -fx-padding: 25;">
+                        
+                        <Label text="Payroll Records"
+                               style="-fx-font-size: 18px;
+                                      -fx-font-weight: bold;
+                                      -fx-text-fill: #2d3436;"/>
+
+                        <TableView fx:id="tablePayroll" prefHeight="300">
+                            <columns>
+                                <TableColumn fx:id="colId" text="ID" prefWidth="50"/>
+                                <TableColumn fx:id="colEmployee" text="Employee ID" prefWidth="80"/>
+                                <TableColumn fx:id="colMonth" text="Month" prefWidth="70"/>
+                                <TableColumn fx:id="colYear" text="Year" prefWidth="70"/>
+                                <TableColumn fx:id="colLeave" text="Leave Days" prefWidth="80"/>
+                                <TableColumn fx:id="colSalary" text="Final Salary" prefWidth="100"/>
+                            </columns>
+                        </TableView>
+
+                        <HBox spacing="10" alignment="CENTER_RIGHT">
+                            <Button text="Print Pay Slip (Selected)"
+                                    onAction="#printPayslip"
+                                    style="-fx-background-color: #fab1a0;
+                                           -fx-text-fill: #2d3436;
+                                           -fx-font-weight: bold;
+                                           -fx-background-radius: 8;
+                                           -fx-padding: 10 20;"/>
+                        </HBox>
+                    </VBox>
+                    </VBox>
+                </ScrollPane>
+            </Tab>
+
+            <!-- TAB 2: STATISTICS &amp; ANALYTICS -->
+            <Tab text="Statistics &amp; Analytics" closable="false">
+                <ScrollPane fitToWidth="true" style="-fx-background-color: #f7f9fc;">
+                    <VBox spacing="20" style="-fx-padding: 30;">
+                    
+                    <!-- KPI Cards -->
+                    <HBox spacing="20">
+                        <!-- Total Employees Card -->
+                        <VBox spacing="10" style="-fx-background-color: white;
+                                                 -fx-background-radius: 12;
+                                                 -fx-border-radius: 12;
+                                                 -fx-padding: 20;
+                                                 -fx-border-color: #0984e3;"
+                              alignment="CENTER">
+                            <Label text="Total Employees"
+                                   style="-fx-text-fill: #2d3436;;
+                                          -fx-font-size: 14px;
+                                          -fx-font-weight: bold;"/>
+                            <Label fx:id="kpiEmployees"
+                                   text="0"
+                                   style="-fx-text-fill: #2d3436;;
+                                          -fx-font-size: 32px;
+                                          -fx-font-weight: bold;"/>
+                        </VBox>
+
+                        <!-- Total Salaries Card -->
+                        <VBox spacing="10" style="-fx-background-color: white;
+                                                 -fx-background-radius: 12;
+                                                 -fx-border-radius: 12;
+                                                 -fx-padding: 20;
+                                                 -fx-border-color: #0984e3;"
+                              alignment="CENTER">
+                            <Label text="Total Salaries"
+                                   style="-fx-text-fill: #2d3436;
+                                          -fx-font-size: 14px;
+                                          -fx-font-weight: bold;"/>
+                            <Label fx:id="kpiTotalSalaries"
+                                   text="0.00 TND"
+                                   style="-fx-text-fill: #2d3436;
+                                          -fx-font-size: 28px;
+                                          -fx-font-weight: bold;"/>
+                        </VBox>
+
+                        <!-- Average Salary Card -->
+                        <VBox spacing="10" style="-fx-background-color: white;
+                                                 -fx-background-radius: 12;
+                                                 -fx-border-radius: 12;
+                                                 -fx-padding: 20;
+                                                 -fx-border-color: #0984e3;"
+                              alignment="CENTER">
+                            <Label text="Average Salary"
+                                   style="-fx-text-fill:#2d3436;
+                                          -fx-font-size: 14px;
+                                          -fx-font-weight: bold;"/>
+                            <Label fx:id="kpiAverageSalary"
+                                   text="0.00 TND"
+                                   style="-fx-text-fill: #2d3436;
+                                          -fx-font-size: 28px;
+                                          -fx-font-weight: bold;"/>
+                        </VBox>
+                    </HBox>
+
+                    <!-- Salary Summary by Role -->
+                    <VBox spacing="10" style="-fx-background-color: #ffffff;
+                                             -fx-background-radius: 12;
+                                             -fx-border-color: #dfe6e9;
+                                             -fx-border-radius: 12;
+                                             -fx-padding: 20;">
+                        
+                        <Label text="Salary Summary by Role"
+                               style="-fx-font-size: 16px;
+                                      -fx-font-weight: bold;
+                                      -fx-text-fill: #2d3436;"/>
+
+                        <PieChart fx:id="pieSalaryByRole" prefHeight="300" title="Total Salary by Role"/>
+                    </VBox>
+
+                    <!-- Monthly Salary Breakdown -->
+                    <VBox spacing="10" style="-fx-background-color: #ffffff;
+                                             -fx-background-radius: 12;
+                                             -fx-border-color: #dfe6e9;
+                                             -fx-border-radius: 12;
+                                             -fx-padding: 20;">
+                        
+                        <Label text="Monthly Salary Breakdown"
+                               style="-fx-font-size: 16px;
+                                      -fx-font-weight: bold;
+                                      -fx-text-fill: #2d3436;"/>
+
+                        <HBox spacing="10" alignment="CENTER_LEFT">
+                            <Label text="Year:"/>
+                            <ComboBox fx:id="yearCombo" prefWidth="100"/>
+                            <Button text="Load Data"
+                                    onAction="#loadMonthlyData"
+                                    style="-fx-background-color: #55efc4;
+                                           -fx-text-fill: #2d3436;
+                                           -fx-font-weight: bold;
+                                           -fx-background-radius: 8;
+                                           -fx-padding: 8 16;"/>
+                        </HBox>
+
+                        <LineChart fx:id="lineMonthlyStats" prefHeight="300" title="Monthly Salary Trends">
+                            <xAxis>
+                                <NumberAxis label="Month"/>
+                            </xAxis>
+                            <yAxis>
+                                <NumberAxis label="Total Salary (TND)"/>
+                            </yAxis>
+                        </LineChart>
+                    </VBox>
+
+                    <!-- Refresh Button -->
+                    <HBox alignment="CENTER_RIGHT">
+                        <Button text="Refresh All Statistics"
+                                onAction="#refreshStatistics"
+                                style="-fx-background-color: #55efc4;
+                                       -fx-text-fill: #2d3436;
+                                       -fx-font-weight: bold;
+                                       -fx-background-radius: 8;
+                                       -fx-padding: 10 20;"/>
+                    </HBox>
+                </VBox>
+                </ScrollPane>
+            </Tab>
+        </TabPane>
+    </center>
+
+</BorderPane>
